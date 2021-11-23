@@ -6,6 +6,7 @@ import com.cameu.server.menu.service.MenuService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,14 @@ public class MenuController {
     @GetMapping("/{category}")
     public ResponseEntity<ResponseVo> showMenuAll(
             @PathVariable("category") String category) {
+        ResponseVo vo = new ResponseVo();
+        vo.setData("return test : " + category);
+        vo.setStatus(HttpStatus.OK);
 
-        return null;
+        return new ResponseEntity<>(
+                vo,
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/{category}/{id}")
